@@ -12,7 +12,7 @@ import { DayWrapper, DateCellWrapper } from './backgroundWrapper'
 let html5Backend
 
 try {
-  html5Backend = require('react-dnd-html5-backend')
+  html5Backend = require('react-dnd-html5-mixed-backend')
 } catch (err) {
   /* optional dep missing */
 }
