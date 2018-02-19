@@ -1,6 +1,6 @@
 {
   "name": "react-big-calendar",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Calendar! with events",
   "author": "Jason Quense <monastic.panic@gmail.com>",
   "repository": "intljusticemission/react-big-calendar",
@@ -88,7 +88,8 @@
     "react": "^16.2.0",
     "react-bootstrap": "^0.28.0",
     "react-dnd": "^2.1.4",
-    "react-dnd-html5-mixed-backend": "^2.0.1",
+    "react-dnd-html5-mixed-backend":
+      "git+https://github.com/greg-dev/react-dnd-html5-mixed-backend.git",
     "react-docgen": "^2.14.1",
     "react-dom": "^16.2.0",
     "release-script": "^1.0.0",
