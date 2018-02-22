@@ -133,11 +133,10 @@ function createWrapper(type) {
             })
           }
           case 'resizeBottom': {
-            const nextEnd = dates.add(value, 30, 'minutes')
             return onEventResize('drop', {
               event,
               start: event.start,
-              end: nextEnd,
+              end: value,
             })
           }
           case 'resizeLeft': {
