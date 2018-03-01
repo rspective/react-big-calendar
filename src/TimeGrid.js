@@ -45,6 +45,7 @@ export default class TimeGrid extends Component {
     width: PropTypes.number,
 
     titleAccessor: accessor.isRequired,
+    iconAccessor: accessor.isRequired,
     tooltipAccessor: accessor.isRequired,
     allDayAccessor: accessor.isRequired,
     startAccessor: accessor.isRequired,
@@ -317,6 +318,7 @@ export default class TimeGrid extends Component {
             eventComponent={this.props.components.event}
             eventWrapperComponent={this.props.components.eventWrapper}
             titleAccessor={this.props.titleAccessor}
+            iconAccessor={this.props.iconAccessor}
             tooltipAccessor={this.props.tooltipAccessor}
             startAccessor={this.props.startAccessor}
             endAccessor={this.props.endAccessor}

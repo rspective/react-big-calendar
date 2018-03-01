@@ -47,6 +47,10 @@ class Example extends React.Component {
 
     return (
       <div className="app">
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
         <div className="jumbotron">
           <div className="container">
             <h1>

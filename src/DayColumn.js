@@ -39,6 +39,7 @@ class DayColumn extends React.Component {
 
     rtl: PropTypes.bool,
     titleAccessor: accessor,
+    iconAccessor: accessor,
     tooltipAccessor: accessor,
     allDayAccessor: accessor.isRequired,
     startAccessor: accessor.isRequired,
@@ -167,6 +168,7 @@ class DayColumn extends React.Component {
       step,
       timeslots,
       titleAccessor,
+      iconAccessor,
       tooltipAccessor,
     } = this.props
 
@@ -204,6 +206,7 @@ class DayColumn extends React.Component {
       let continuesAfter = startsAfter(end, max)
 
       let title = get(event, titleAccessor)
+      let icon = get(event, iconAccessor)
       let tooltip = get(event, tooltipAccessor)
       let label
       if (_continuesPrior && _continuesAfter) {
@@ -249,10 +252,19 @@ class DayColumn extends React.Component {
               'rbc-event-continues-day-after': _continuesAfter,
             })}
           >
-            <div className="rbc-event-label">{label}</div>
+            <div className="rbc-event-label">
+              {[
+                icon && (
+                  <i className="material-icons" key={icon + idx}>
+                    {icon}
+                  </i>
+                ),
+                label,
+              ]}
+            </div>
             <div className="rbc-event-content">
               {EventComponent ? (
-                <EventComponent event={event} title={title} />
+                <EventComponent event={event} title={title} icon={icon} />
               ) : (
                 title
               )}

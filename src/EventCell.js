@@ -14,6 +14,7 @@ let propTypes = {
   isAllDay: PropTypes.bool,
   eventPropGetter: PropTypes.func,
   titleAccessor: accessor,
+  iconAccessor: accessor,
   tooltipAccessor: accessor,
   allDayAccessor: accessor,
   startAccessor: accessor,
@@ -36,6 +37,7 @@ class EventCell extends React.Component {
       startAccessor,
       endAccessor,
       titleAccessor,
+      iconAccessor,
       tooltipAccessor,
       slotStart,
       slotEnd,
@@ -47,6 +49,7 @@ class EventCell extends React.Component {
     } = this.props
 
     let title = get(event, titleAccessor),
+      icon = get(event, iconAccessor),
       tooltip = get(event, tooltipAccessor),
       end = get(event, endAccessor),
       start = get(event, startAccessor),
@@ -80,9 +83,21 @@ class EventCell extends React.Component {
         >
           <div className="rbc-event-content" title={tooltip || undefined}>
             {Event ? (
-              <Event event={event} title={title} isAllDay={isAllDayEvent} />
+              <Event
+                event={event}
+                title={title}
+                icon={icon}
+                isAllDay={isAllDayEvent}
+              />
             ) : (
-              title
+              [
+                icon && (
+                  <i className="material-icons" key={icon}>
+                    {icon}
+                  </i>
+                ),
+                title,
+              ]
             )}
           </div>
         </div>

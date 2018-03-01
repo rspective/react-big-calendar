@@ -19,6 +19,7 @@ class Agenda extends React.Component {
     date: PropTypes.instanceOf(Date),
     length: PropTypes.number.isRequired,
     titleAccessor: accessor.isRequired,
+    iconAccessor: accessor.isRequired,
     tooltipAccessor: accessor.isRequired,
     allDayAccessor: accessor.isRequired,
     startAccessor: accessor.isRequired,
@@ -92,6 +93,7 @@ class Agenda extends React.Component {
       culture,
       components,
       titleAccessor,
+      iconAccessor,
       agendaDateFormat,
       eventPropGetter,
       startAccessor,
@@ -113,6 +115,9 @@ class Agenda extends React.Component {
             isSelected(event, selected)
           )
         : {}
+
+      let icon = get(event, iconAccessor)
+
       let dateLabel =
         idx === 0 && localizer.format(day, agendaDateFormat, culture)
       let first =
@@ -138,9 +143,16 @@ class Agenda extends React.Component {
           </td>
           <td className="rbc-agenda-event-cell">
             {EventComponent ? (
-              <EventComponent event={event} title={title} />
+              <EventComponent event={event} title={title} icon={icon} />
             ) : (
-              title
+              [
+                icon && (
+                  <i className="material-icons" key={icon + idx}>
+                    {icon}
+                  </i>
+                ),
+                title,
+              ]
             )}
           </td>
         </tr>

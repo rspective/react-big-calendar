@@ -97,6 +97,7 @@ class Calendar extends React.Component {
      *  - start time
      *  - end time
      *  - title
+     *  - icon
      *  - whether its an "all day" event or not
      *  - any resource the event may be a related too
      *
@@ -127,6 +128,17 @@ class Calendar extends React.Component {
      * @type {(func|string)}
      */
     titleAccessor: accessor,
+
+    /**
+     * Accessor for the event icon. Should resolve to a `renderable` value.
+     *
+     * ```js
+     * string | (event: Object) => string
+     * ```
+     *
+     * @type {(func|string)}
+     */
+    iconAccessor: accessor,
 
     /**
      * Accessor for the event tooltip. Should
@@ -678,6 +690,7 @@ class Calendar extends React.Component {
     drilldownView: views.DAY,
 
     titleAccessor: 'title',
+    iconAccessor: 'icon',
     tooltipAccessor: 'title',
     allDayAccessor: 'allDay',
     startAccessor: 'start',

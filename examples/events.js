@@ -5,12 +5,14 @@ export default [
     allDay: true,
     start: new Date(2015, 3, 0),
     end: new Date(2015, 3, 1),
+    icon: 'local_cafe',
   },
   {
     id: 1,
     title: 'Long Event',
     start: new Date(2015, 3, 7),
     end: new Date(2015, 3, 10),
+    icon: 'local_cafe',
   },
 
   {
@@ -18,6 +20,7 @@ export default [
     title: 'DTS STARTS',
     start: new Date(2016, 2, 13, 0, 0, 0),
     end: new Date(2016, 2, 20, 0, 0, 0),
+    icon: 'file_download',
   },
 
   {
@@ -25,6 +28,7 @@ export default [
     title: 'DTS ENDS',
     start: new Date(2016, 10, 6, 0, 0, 0),
     end: new Date(2016, 10, 13, 0, 0, 0),
+    icon: 'file_upload',
   },
 
   {
@@ -32,6 +36,7 @@ export default [
     title: 'Some Event',
     start: new Date(2015, 3, 9, 0, 0, 0),
     end: new Date(2015, 3, 9, 0, 0, 0),
+    icon: 'android',
   },
   {
     id: 5,
@@ -39,6 +44,7 @@ export default [
     start: new Date(2015, 3, 11),
     end: new Date(2015, 3, 13),
     desc: 'Big conference for important people',
+    icon: 'feedback',
   },
   {
     id: 6,
@@ -78,6 +84,7 @@ export default [
     title: 'Birthday Party',
     start: new Date(2015, 3, 13, 7, 0, 0),
     end: new Date(2015, 3, 13, 10, 30, 0),
+    icon: 'cake',
   },
   {
     id: 12,
@@ -90,5 +97,6 @@ export default [
     title: 'Multi-day Event',
     start: new Date(2015, 3, 20, 19, 30, 0),
     end: new Date(2015, 3, 22, 2, 0, 0),
+    icon: 'event',
   },
 ]

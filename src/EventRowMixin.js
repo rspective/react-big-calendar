@@ -18,6 +18,7 @@ export default {
     isAllDay: PropTypes.bool,
     eventPropGetter: PropTypes.func,
     titleAccessor: accessor,
+    iconAccessor: accessor,
     tooltipAccessor: accessor,
     allDayAccessor: accessor,
     startAccessor: accessor,
@@ -45,6 +46,7 @@ export default {
       startAccessor,
       endAccessor,
       titleAccessor,
+      iconAccessor,
       tooltipAccessor,
       allDayAccessor,
       eventComponent,
@@ -65,6 +67,7 @@ export default {
         startAccessor={startAccessor}
         endAccessor={endAccessor}
         titleAccessor={titleAccessor}
+        iconAccessor={iconAccessor}
         tooltipAccessor={tooltipAccessor}
         allDayAccessor={allDayAccessor}
         slotStart={start}

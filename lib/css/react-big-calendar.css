@@ -191,6 +191,10 @@ button.rbc-input::-moz-focus-inner {
 .rbc-event.rbc-selected {
   background-color: #265985;
 }
+.rbc-event i.material-icons {
+  font-size: 11px;
+  margin-right: 2px;
+}
 .rbc-event-label {
   font-size: 80%;
 }
