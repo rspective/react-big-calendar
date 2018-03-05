@@ -24,6 +24,7 @@ import CustomView from './demos/customView'
 import Resource from './demos/resource'
 import Timeslots from './demos/timeslots'
 import Dnd from './demos/dnd'
+import DndHA from './demos/dndha'
 
 let demoRoot =
   'https://github.com/intljusticemission/react-big-calendar/tree/master/examples/demos'
@@ -43,6 +44,7 @@ class Example extends React.Component {
       resource: Resource,
       timeslots: Timeslots,
       dnd: Dnd,
+      dndha: DndHA,
     }[selected]
 
     return (
@@ -121,6 +123,11 @@ class Example extends React.Component {
               <li className={cn({ active: selected === 'dnd' })}>
                 <a href="#" onClick={this.select.bind(null, 'dnd')}>
                   Drag and Drop
+                </a>
+              </li>
+              <li className={cn({ active: selected === 'dndha' })}>
+                <a href="#" onClick={this.select.bind(null, 'dndha')}>
+                  HA
                 </a>
               </li>
             </ul>
