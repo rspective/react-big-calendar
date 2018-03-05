@@ -85,7 +85,14 @@ class EventCell extends React.Component {
             {Event ? (
               <Event
                 event={event}
-                title={title}
+                title={[
+                  icon && (
+                    <i className="material-icons" key={icon}>
+                      {icon}
+                    </i>
+                  ),
+                  title,
+                ]}
                 icon={icon}
                 isAllDay={isAllDayEvent}
               />

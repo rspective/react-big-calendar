@@ -72,7 +72,7 @@ ResizableEvent.propTypes = {
   connectTopDragPreview: PropTypes.func,
   connectTopDragSource: PropTypes.func,
   event: PropTypes.object,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   isAllDay: PropTypes.bool,
 }
 

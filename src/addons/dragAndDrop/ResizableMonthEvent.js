@@ -46,7 +46,7 @@ ResizableMonthEvent.propTypes = {
   connectLeftDragSource: PropTypes.func,
   connectRightDragPreview: PropTypes.func,
   connectRightDragSource: PropTypes.func,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 }
 
 export default compose(
