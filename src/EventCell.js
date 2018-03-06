@@ -91,7 +91,7 @@ class EventCell extends React.Component {
                       {icon}
                     </i>
                   ),
-                  title,
+                  event.label || title,
                 ]}
                 icon={icon}
                 isAllDay={isAllDayEvent}
