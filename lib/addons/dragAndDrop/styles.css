@@ -1,3 +1,6 @@
+.rbc-addons-dnd .rbc-month-view .rbc-date-cell > a {
+  pointer-events: auto !important;
+}
 .rbc-addons-dnd .rbc-row-content {
   pointer-events: none;
 }
