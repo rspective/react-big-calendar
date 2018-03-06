@@ -60,10 +60,19 @@ class DndHa extends React.Component {
   }
 
   render() {
+    const toHHmm = date =>
+      new Date(date).toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, '$1')
+
+    const events = this.state.events.map(e =>
+      Object.assign(e, {
+        label: toHHmm(e.start) + ' - ' + toHHmm(e.end) + ' ' + e.title,
+      })
+    )
+
     return (
       <DragAndDropCalendar
         selectable
-        events={this.state.events}
+        events={events}
         onEventDrop={this.moveEvent}
         resizable
         onEventResize={this.resizeEvent}
