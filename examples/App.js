@@ -141,7 +141,10 @@ class Example extends React.Component {
                 </strong>
               </a>
             </div>
-            <Current />
+
+            <div className="drag-and-drop-area">
+              <Current />
+            </div>
           </div>
         </div>
         <div className="docs">
