@@ -14,8 +14,26 @@ export function getEventTimes(start, end, dropDate, type) {
 
   // If the event is dropped in a "Day" cell, preserve an event's start time by extracting the hours and minutes off
   // the original start date and add it to newDate.value
-  const nextStart =
+  let nextStart =
     type === 'dateCellWrapper' ? dates.merge(dropDate, start) : dropDate
+
+  if (type === 'dayWrapper' && window.updateDropPositionBasedOnDragPoint) {
+    const {
+      dragPointDistanceFromTop,
+      draggedElementHeight,
+    } = window.updateDropPositionBasedOnDragPoint
+    if ((dragPointDistanceFromTop, draggedElementHeight)) {
+      let diff = parseInt(
+        dragPointDistanceFromTop * duration / draggedElementHeight,
+        10
+      )
+      // Round to given step duration (15 minutes by default)
+      const minStepDuration = (window.minStepDuration || 15) * 60 * 1000
+      diff = Math.floor(diff / minStepDuration) * minStepDuration
+      nextStart = dates.subtract(nextStart, diff, 'milliseconds')
+    }
+    delete window.updateDropPositionBasedOnDragPoint
+  }
 
   const nextEnd = dates.add(nextStart, duration, 'milliseconds')
 
