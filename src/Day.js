@@ -17,6 +17,8 @@ class Day extends React.Component {
     return (
       <TimeGrid
         {...props}
+        min={dates.startOf(date, 'day')}
+        max={dates.endOf(date, 'day')}
         range={[dates.startOf(date, 'day')]}
         eventOffset={10}
       />
