@@ -376,9 +376,11 @@ class DayColumn extends React.Component {
 
   _selectSlot = ({ startDate, endDate, action }) => {
     let current = startDate,
+      repeatLimit = 24 * 60 / this.props.step,
       slots = []
 
-    while (dates.lte(current, endDate)) {
+    while (dates.lte(current, endDate) && repeatLimit) {
+      repeatLimit--
       slots.push(current)
       current = dates.add(current, this.props.step, 'minutes')
     }
