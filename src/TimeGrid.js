@@ -368,9 +368,13 @@ export default class TimeGrid extends Component {
     let HeaderComponent = components.header || Header
     const today = getNow()
 
+    const dayFormatLabel =
+      this.props.range.length > 1 && dayFormat.indexOf('ddd') === -1
+        ? dayFormat + ' ddd'
+        : dayFormat
     return range.map((date, i) => {
       let drilldownView = getDrilldownView(date)
-      let label = localizer.format(date, dayFormat, culture)
+      let label = localizer.format(date, dayFormatLabel, culture)
 
       const { className, style: dayStyles } =
         (dayPropGetter && dayPropGetter(date)) || {}
