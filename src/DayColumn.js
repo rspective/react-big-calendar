@@ -321,9 +321,45 @@ class DayColumn extends React.Component {
 
       current = snapToSlot(minToDate(mins * current, min), step)
 
-      if (!this.state.selecting) this._initialDateSlot = current
+      if (!this.state.selecting) {
+        this._initialDateSlot = current
+        this.startedOnHourAfterTheRemovedOne = undefined
+      }
 
       let initial = this._initialDateSlot
+
+      // snap to slot fix for DST changes
+      const minOffset = new Date(min).getTimezoneOffset()
+      const initialOffset = new Date(initial).getTimezoneOffset()
+      const currentOffset = new Date(current).getTimezoneOffset()
+      if (minOffset > currentOffset || initialOffset < minOffset) {
+        const hourAfterTheRemovedOne = 3 // 3AM right after 1 AM
+        const distanceFromTopChangeDST = 1 / 23 * hourAfterTheRemovedOne
+        const distanceFromTop = (y - top) / range
+        // winter -> summer
+        if (initialOffset < minOffset) {
+          // selection started after DST
+          if (distanceFromTop > distanceFromTopChangeDST) {
+            // started after startedOnHourAfterTheRemovedOne
+            if (!this.startedOnHourAfterTheRemovedOne) {
+              initial = dates.add(initial, 60, 'minutes')
+            }
+            current = dates.add(current, 60, 'minutes')
+          } else {
+            // stared before startedOnHourAfterTheRemovedOne
+            if (!this.state.selecting)
+              this.startedOnHourAfterTheRemovedOne = true
+            if (!this.startedOnHourAfterTheRemovedOne) {
+              initial = dates.add(initial, 60, 'minutes')
+            }
+          }
+        } else {
+          // selection started before DST
+          if (distanceFromTop > distanceFromTopChangeDST) {
+            current = dates.add(current, 60, 'minutes')
+          }
+        }
+      }
 
       if (dates.eq(initial, current, 'minutes'))
         current = dates.add(current, step, 'minutes')
