@@ -38,6 +38,7 @@ export default class TimeGrid extends Component {
     eventPropGetter: PropTypes.func,
     dayPropGetter: PropTypes.func,
     dayFormat: dateFormat,
+    weekdayFormat: dateFormat,
     showMultiDayTimes: PropTypes.bool,
     culture: PropTypes.string,
 
@@ -364,17 +365,14 @@ export default class TimeGrid extends Component {
       dayPropGetter,
       getDrilldownView,
       getNow,
+      weekdayFormat,
     } = this.props
     let HeaderComponent = components.header || Header
     const today = getNow()
 
-    const dayFormatLabel =
-      this.props.range.length > 1 && dayFormat.indexOf('ddd') === -1
-        ? dayFormat + ' ddd'
-        : dayFormat
     return range.map((date, i) => {
       let drilldownView = getDrilldownView(date)
-      let label = localizer.format(date, dayFormatLabel, culture)
+      let label = localizer.format(date, weekdayFormat, culture)
 
       const { className, style: dayStyles } =
         (dayPropGetter && dayPropGetter(date)) || {}
