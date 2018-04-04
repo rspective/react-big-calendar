@@ -215,6 +215,9 @@ class DayColumn extends React.Component {
         label = localizer.format({ start, end }, _eventTimeRangeFormat, culture)
       }
 
+      // keep original label if provided
+      label = event.label || label
+
       let _isSelected = isSelected(event, selected)
 
       if (eventPropGetter)
