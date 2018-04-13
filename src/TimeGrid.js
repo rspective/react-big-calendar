@@ -281,16 +281,21 @@ export default class TimeGrid extends Component {
       ? this.renderHeaderResources(range, resources)
       : message(messages).allDay
 
+    // don't render time label for single DAY view
+    const renderHeaderRow = range.length !== 1
+
     return (
       <div
         ref="headerCell"
         className={cn('rbc-time-header', isOverflowing && 'rbc-overflowing')}
         style={style}
       >
-        <div className="rbc-row">
-          <div className="rbc-label rbc-header-gutter" style={{ width }} />
-          {this.renderHeaderCells(range)}
-        </div>
+        {renderHeaderRow && (
+          <div className="rbc-row">
+            <div className="rbc-label rbc-header-gutter" style={{ width }} />
+            {this.renderHeaderCells(range)}
+          </div>
+        )}
         {resources && (
           <div className="rbc-row rbc-row-resource">
             <div className="rbc-label rbc-header-gutter" style={{ width }} />
