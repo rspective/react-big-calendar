@@ -234,11 +234,11 @@ class DayColumn extends React.Component {
         <EventWrapper event={event} key={'evt_' + idx}>
           <div
             style={{
-              ...xStyle,
               top: `${top}%`,
               height: `${height}%`,
               [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
               width: `${width}%`,
+              ...xStyle,
             }}
             title={
               tooltip
