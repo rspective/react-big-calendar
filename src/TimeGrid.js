@@ -86,7 +86,8 @@ export default class TimeGrid extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { gutterWidth: undefined, isOverflowing: null }
+    // this.state = { gutterWidth: undefined, isOverflowing: null }
+    this.state = { gutterWidth: undefined, isOverflowing: true }
     this.handleSelectEvent = this.handleSelectEvent.bind(this)
     this.handleDoubleClickEvent = this.handleDoubleClickEvent.bind(this)
     this.handleHeaderClick = this.handleHeaderClick.bind(this)
@@ -475,8 +476,8 @@ export default class TimeGrid extends Component {
   checkOverflow = () => {
     if (this._updatingOverflow) return
 
-    let isOverflowing =
-      this.refs.content.scrollHeight > this.refs.content.clientHeight
+    let isOverflowing = true // because scrollbar will be always visible
+    //       this.refs.content.scrollHeight > this.refs.content.clientHeight
 
     if (this.state.isOverflowing !== isOverflowing) {
       this._updatingOverflow = true
