@@ -253,7 +253,7 @@ class MonthView extends React.Component {
       <div key={'header_' + idx} className="rbc-header" style={segStyle(1, 7)}>
         <HeaderComponent
           date={day}
-          label={localizer.format(day, format, culture)}
+          label={localizer.format(day, format, culture).replace('.', '')}
           localizer={localizer}
           format={format}
           culture={culture}

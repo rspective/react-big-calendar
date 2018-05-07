@@ -386,7 +386,7 @@ export default class TimeGrid extends Component {
       let header = (
         <HeaderComponent
           date={date}
-          label={label}
+          label={label.replace('.', '')}
           localizer={localizer}
           format={dayFormat}
           culture={culture}
