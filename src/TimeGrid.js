@@ -151,17 +151,7 @@ export default class TimeGrid extends Component {
   }
 
   render() {
-    let {
-      events,
-      range,
-      width,
-      startAccessor,
-      endAccessor,
-      getNow,
-      resources,
-      allDayAccessor,
-      showMultiDayTimes,
-    } = this.props
+    let { events, range, width, getNow, resources, allDayAccessor } = this.props
 
     width = width || this.state.gutterWidth
 
@@ -175,14 +165,7 @@ export default class TimeGrid extends Component {
 
     events.forEach(event => {
       if (inRange(event, start, end, this.props)) {
-        let eStart = get(event, startAccessor),
-          eEnd = get(event, endAccessor)
-
-        if (
-          get(event, allDayAccessor) ||
-          (dates.isJustDate(eStart) && dates.isJustDate(eEnd)) ||
-          (!showMultiDayTimes && !dates.eq(eStart, eEnd, 'day'))
-        ) {
+        if (get(event, allDayAccessor)) {
           allDayEvents.push(event)
         } else {
           rangeEvents.push(event)
