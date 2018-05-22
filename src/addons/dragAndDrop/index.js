@@ -3,6 +3,7 @@ import React from 'react'
 import { DragDropContext } from 'react-dnd'
 import cn from 'classnames'
 
+import dates from '../../utils/dates'
 import { accessor } from '../../utils/propTypes'
 import DraggableEventWrapper from './DraggableEventWrapper'
 import ResizableEvent from './ResizableEvent'
@@ -54,7 +55,66 @@ export default function withDragAndDrop(
     }
 
     handleStateChange = () => {
-      const isDragging = !!this.monitor.getItem()
+      const item = this.monitor.getItem()
+      const isDragging = !!item
+      window.resizedEvent = item ? item : null
+      if (window.meetingDuration && window.resizeType && window.resizedEvent) {
+        const handlers = this.monitor.registry.handlers
+        const handlersKeys = Object.keys(handlers)
+        const cellOver = handlersKeys
+          .map(k => handlers[k].component.props)
+          .filter(p => p.isOver)
+          .pop()
+        if (cellOver) {
+          const dateCell = cellOver.value
+          let duration = 0
+          let direction = null
+          if (window.dateCell) {
+            direction = +dateCell < +window.dateCell ? 'up' : 'down'
+            window.dateCell = dateCell
+            let startDate
+            let endDate
+            const step = 15
+            if (window.resizeType === 'resizeBottom') {
+              startDate = item.start
+              endDate = dateCell
+              if (direction === 'up')
+                endDate.setMinutes(endDate.getMinutes() - step)
+              if (direction === 'down')
+                endDate.setMinutes(endDate.getMinutes() + step)
+            } else if (window.resizeType === 'resizeTop') {
+              startDate = dateCell
+              endDate = item.end
+              if (direction === 'up')
+                startDate.setMinutes(startDate.getMinutes() - step)
+              if (direction === 'down')
+                startDate.setMinutes(startDate.getMinutes() + step)
+            }
+            duration = dates.diff(startDate, endDate) / 60000
+
+            // TEMP: wrong calculation on direction=up => don't show meeting duration
+            if (direction === 'up') {
+              window.meetingDuration.style.display = 'none'
+              duration = 0
+            }
+          } else {
+            window.dateCell = dateCell
+          }
+          if (duration) {
+            let h = Math.floor(duration / 60)
+            let m = duration % 60
+            h = h < 10 ? '0' + h : h
+            m = m < 10 ? '0' + m : m
+            window.meetingDuration.innerHTML = h + ':' + m
+            window.meetingDuration.style.top = window.meetingDurationY + 'px'
+            window.meetingDuration.style.left = window.meetingDurationX + 'px'
+            window.meetingDuration.style.display = 'block'
+          } else {
+            window.meetingDuration.innerHTML = ''
+            window.meetingDuration.style.display = 'none'
+          }
+        }
+      }
 
       if (isDragging !== this.state.isDragging) {
         setTimeout(() => this.setState({ isDragging }))

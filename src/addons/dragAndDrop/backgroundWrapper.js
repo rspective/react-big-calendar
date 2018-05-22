@@ -128,6 +128,13 @@ function createWrapper(type) {
 
   const dropTarget = {
     drop(_, monitor, { props, context }) {
+      window.resizeType = null
+      window.over = null
+      if (window.meetingDuration) {
+        window.meetingDuration.innerHTML = ''
+        window.meetingDuration.style.display = 'none'
+      }
+
       const event = monitor.getItem()
       const { value } = props
       const { onEventDrop, onEventResize, startAccessor, endAccessor } = context

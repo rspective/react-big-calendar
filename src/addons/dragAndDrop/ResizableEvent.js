@@ -77,11 +77,19 @@ ResizableEvent.propTypes = {
 }
 
 const eventSourceTop = {
-  beginDrag: ({ event }) => ({ ...event, type: 'resizeTop' }),
+  beginDrag: ({ event }) => {
+    window.resizeType = 'resizeTop'
+    window.dateCell = null
+    return { ...event, type: 'resizeTop' }
+  },
 }
 
 const eventSourceBottom = {
-  beginDrag: ({ event }) => ({ ...event, type: 'resizeBottom' }),
+  beginDrag: ({ event }) => {
+    window.resizeType = 'resizeBottom'
+    window.dateCell = null
+    return { ...event, type: 'resizeBottom' }
+  },
 }
 
 const eventSourceLeft = {
