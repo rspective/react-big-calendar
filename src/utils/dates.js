@@ -1,4 +1,5 @@
 /* eslint no-fallthrough: off */
+import moment from 'moment-timezone'
 import dateMath from 'date-arithmetic'
 import localizer from '../localizer'
 
@@ -10,6 +11,14 @@ const MILLI = {
 }
 
 const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+// const handleDST = d => {
+//   d = moment(d).tz('Europe/Zurich')
+//   if (d.isValid() && d.isDST()) {
+//     return d.add(d.get('month') === 9 ? 60 : -60, 'minutes')
+//   }
+//   return d
+// }
 
 let dates = {
   ...dateMath,
@@ -64,6 +73,9 @@ let dates = {
   },
 
   merge(date, time) {
+    // date = moment(date).tz('Europe/Zurich');
+    // time = moment(time).tz('Europe/Zurich');
+
     if (time == null && date == null) return null
 
     if (time == null) time = new Date()
@@ -104,6 +116,11 @@ let dates = {
   diff(dateA, dateB, unit) {
     if (!unit || unit === 'milliseconds') return Math.abs(+dateA - +dateB)
 
+    /* eslint-disable */
+
+    const a = moment.tz(dateA, 'Europe/Zurich')
+    const b = moment.tz(dateB, 'Europe/Zurich')
+    return Math.abs(a.diff(b, unit))
     // the .round() handles an edge case
     // with DST where the total won't be exact
     // since one day in the range may be shorter/longer by an hour

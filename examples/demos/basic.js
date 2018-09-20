@@ -10,7 +10,7 @@ let Basic = () => (
     views={allViews}
     step={60}
     showMultiDayTimes
-    defaultDate={new Date(2015, 3, 1)}
+    defaultDate={new Date(2018, 9, 28)}
   />
 )
 

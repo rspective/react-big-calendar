@@ -1,5 +1,7 @@
 import { accessor as get } from '../accessors'
 import dates from '../dates'
+import moment from 'moment-timezone'
+/* eslint-disable */
 
 export function startsBefore(date, min) {
   return dates.lt(dates.merge(min, date), min, 'minutes')
@@ -9,8 +11,23 @@ export function positionFromDate(date, min, total) {
   if (startsBefore(date, min)) {
     return 0
   }
+  const d = moment([date.getFullYear(), date.getMonth(), date.getDate()])
 
-  const diff = dates.diff(min, dates.merge(min, date), 'minutes')
+  // const m = moment(min).tz('Europe/Zurich');
+  // const d = moment(date).tz('Europe/Zurich');
+
+  // const m_copy = Object.assign({}, m);
+
+  // const added = m.add(d);
+
+  // const fromBegin = d.diff(m, 'minutes')
+  const fromBegin = dates.merge(min, date)
+  let diff = dates.diff(min, fromBegin, 'minutes')
+
+  if (d.isValid() && d.isDST()) {
+    debugger // eslint-disable-line
+    diff += d.get('month') === 9 ? -60 : 60
+  }
   return Math.min(diff, total)
 }
 

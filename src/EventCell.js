@@ -67,7 +67,6 @@ class EventCell extends React.Component {
         end,
         selected
       )
-
     return (
       <EventWrapper event={event}>
         <div

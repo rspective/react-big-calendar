@@ -57,8 +57,8 @@ class Dnd extends React.Component {
         onEventDrop={this.moveEvent}
         resizable
         onEventResize={this.resizeEvent}
-        defaultView="week"
-        defaultDate={new Date(2015, 3, 12)}
+        defaultView="day"
+        defaultDate={new Date(2018, 9, 28)}
       />
     )
   }

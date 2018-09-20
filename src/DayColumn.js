@@ -357,7 +357,7 @@ class DayColumn extends React.Component {
             }
           }
         } else {
-          // selection started before DST
+          // selection started before
           if (distanceFromTop > distanceFromTopChangeDST) {
             current = dates.add(current, 60, 'minutes')
           }
