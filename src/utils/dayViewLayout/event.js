@@ -7,6 +7,9 @@ export function startsBefore(date, min) {
   return dates.lt(dates.merge(min, date), min, 'minutes')
 }
 
+// const getDstOffset = (start, end) =>
+//   Math.abs(start.getTimezoneOffset() - end.getTimezoneOffset())
+
 export function positionFromDate(date, min, total) {
   if (startsBefore(date, min)) {
     return 0
@@ -23,6 +26,7 @@ export function positionFromDate(date, min, total) {
   // const fromBegin = d.diff(m, 'minutes')
   const fromBegin = dates.merge(min, date)
   let diff = dates.diff(min, fromBegin, 'minutes')
+
   return Math.min(diff, total)
 }
 

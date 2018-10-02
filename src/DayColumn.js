@@ -337,7 +337,6 @@ class DayColumn extends React.Component {
       const currentOffset = new Date(current).getTimezoneOffset()
       const isFromSummerToWinter =
         minOffset !== currentOffset && new Date(min).getMonth() === 9
-      debugger // eslint-disable-line
       if (minOffset !== currentOffset) {
         const hourAfterTheRemovedOne = 3 // 3AM right after 1 AM
         const distanceFromTopChangeDST = 1 / 23 * hourAfterTheRemovedOne
