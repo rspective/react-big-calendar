@@ -11,13 +11,8 @@ const MILLI = {
 
 const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
-// const handleDST = d => {
-//   d = moment(d).tz('Europe/Zurich')
-//   if (d.isValid() && d.isDST()) {
-//     return d.add(d.get('month') === 9 ? 60 : -60, 'minutes')
-//   }
-//   return d
-// }
+const getDstOffset = (start, end) =>
+  Math.abs(start.getTimezoneOffset() - end.getTimezoneOffset())
 
 let dates = {
   ...dateMath,
@@ -115,15 +110,19 @@ let dates = {
   diff(dateA, dateB, unit) {
     if (!unit || unit === 'milliseconds') return Math.abs(+dateA - +dateB)
 
-    // the .round() handles an edge case
-    // with DST where the total won't be exact
-    // since one day in the range may be shorter/longer by an hour
-    return Math.round(
+    const d = Math.round(
       Math.abs(
         +dates.startOf(dateA, unit) / MILLI[unit] -
           +dates.startOf(dateB, unit) / MILLI[unit]
       )
     )
+
+    const offset = getDstOffset(dateA, dateB)
+
+    // the .round() handles an edge case
+    // with DST where the total won't be exact
+    // since one day in the range may be shorter/longer by an hour
+    return d + offset
   },
 
   total(date, unit) {

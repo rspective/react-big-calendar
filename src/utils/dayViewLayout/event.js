@@ -23,11 +23,6 @@ export function positionFromDate(date, min, total) {
   // const fromBegin = d.diff(m, 'minutes')
   const fromBegin = dates.merge(min, date)
   let diff = dates.diff(min, fromBegin, 'minutes')
-
-  if (d.isValid() && d.isDST()) {
-    debugger // eslint-disable-line
-    diff += d.get('month') === 9 ? -60 : 60
-  }
   return Math.min(diff, total)
 }
 
