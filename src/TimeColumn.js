@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import cn from 'classnames'
-import moment from 'moment-timezone'
 
 import dates from './utils/dates'
 import { elementType, dateFormat } from './utils/propTypes'
@@ -78,16 +77,7 @@ export default class TimeColumn extends Component {
       resource,
     } = this.props
     const totalMin = dates.diff(min, max, 'minutes')
-    let numGroups
-    if (
-      moment(min)
-        .tz('Europe/Zurich')
-        .isDST()
-    ) {
-      numGroups = Math.ceil(totalMin / (step * timeslots)) - 1
-    } else {
-      numGroups = Math.ceil(totalMin / (step * timeslots))
-    }
+    const numGroups = Math.ceil(totalMin / (step * timeslots))
     const renderedSlots = []
     const groupLengthInMinutes = step * timeslots
 
