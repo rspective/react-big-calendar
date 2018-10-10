@@ -122,7 +122,7 @@ let dates = {
     // the .round() handles an edge case
     // with DST where the total won't be exact
     // since one day in the range may be shorter/longer by an hour
-    return d + offset
+    return d + Math.min(0, offset)
   },
 
   total(date, unit) {
