@@ -53,6 +53,7 @@ export default function withDragAndDrop(Calendar) {
     static propTypes = {
       onEventDrop: PropTypes.func,
       onEventResize: PropTypes.func,
+      onEventActionStart: PropTypes.func,
 
       draggableAccessor: accessor,
       resizableAccessor: accessor,
@@ -115,6 +116,12 @@ export default function withDragAndDrop(Calendar) {
 
     handleBeginAction = (event, action, direction) => {
       this.setState({ event, action, direction })
+      this.props.onEventActionStart({
+        state: this.state,
+        event,
+        action,
+        direction,
+      })
     }
 
     handleInteractionStart = () => {
