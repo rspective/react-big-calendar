@@ -117,7 +117,6 @@ export default function withDragAndDrop(Calendar) {
     handleBeginAction = (event, action, direction) => {
       this.setState({ event, action, direction })
       this.props.onEventActionStart({
-        state: this.state,
         event,
         action,
         direction,
