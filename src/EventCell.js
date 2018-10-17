@@ -63,7 +63,7 @@ class EventCell extends React.Component {
             localizer={localizer}
           />
         ) : (
-          title
+          event.label || title
         )}
       </div>
     )

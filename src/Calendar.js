@@ -858,7 +858,7 @@ class Calendar extends React.Component {
     } = this.state.context
 
     let CalToolbar = components.toolbar || Toolbar
-    const label = View.title(current, { localizer, length })
+    const label = View.title(current, { localizer, length, culture: _3 })
 
     return (
       <div
