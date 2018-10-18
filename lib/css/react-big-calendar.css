@@ -697,3 +697,18 @@ button.rbc-input::-moz-focus-inner {
   background-color: #74ad31;
   pointer-events: none;
 }
+.rbc-current-time-indicator::before {
+  display: block;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  content: ' ';
+  background-color: #74ad31;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+}
+.rbc-rtl .rbc-current-time-indicator::before {
+  left: 0;
+  right: -3px;
+}
