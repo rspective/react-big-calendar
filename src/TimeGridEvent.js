@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cn from 'classnames'
 import React from 'react'
 
@@ -40,13 +41,12 @@ function TimeGridEvent(props) {
       <div
         onClick={onClick}
         onDoubleClick={onDoubleClick}
-        style={{
-          ...userProps.style,
+        style={_.defaults({}, userProps.style, {
           top: `${top}%`,
           height: `${height}%`,
           [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
           width: `${width}%`,
-        }}
+        })}
         title={
           tooltip
             ? (typeof label === 'string' ? label + ': ' : '') + tooltip
