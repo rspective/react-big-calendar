@@ -97,7 +97,7 @@ export default class TimeGrid extends Component {
 
     const timeIndicator = this.refs.timeIndicator
     const factor = secondsPassed / secondsGrid
-    const timeGutter = this.gutterRef
+    const timeGutter = this.gutter
 
     if (timeGutter && current >= min && current <= max) {
       const pixelHeight = timeGutter.offsetHeight
@@ -305,8 +305,8 @@ export default class TimeGrid extends Component {
             className="rbc-time-gutter"
           />
           {this.renderEvents(range, rangeEvents, getNow())}
+          <div ref="timeIndicator" className="rbc-current-time-indicator" />
         </div>
-        <div ref="timeIndicator" className="rbc-current-time-indicator" />
       </div>
     )
   }
