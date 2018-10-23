@@ -32,8 +32,8 @@ Week.navigate = (date, action) => {
   }
 }
 
-Week.range = (date, { localizer }) => {
-  let firstOfWeek = localizer.startOfWeek()
+Week.range = date => {
+  let firstOfWeek = 1
   let start = dates.startOf(date, 'week', firstOfWeek)
   let end = dates.endOf(date, 'week', firstOfWeek)
 
