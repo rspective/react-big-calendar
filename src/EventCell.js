@@ -71,6 +71,7 @@ class EventCell extends React.Component {
               </i>
             ),
             event.label || title,
+            'THIS_IS+CUSTON',
           ]
         )}
       </div>
