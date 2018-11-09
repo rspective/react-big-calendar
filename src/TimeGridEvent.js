@@ -23,21 +23,13 @@ function TimeGridEvent(props) {
   let tooltip = accessors.tooltip(event)
   let end = accessors.end(event)
   let start = accessors.start(event)
-  let icon = event.icon
 
   let userProps = getters.eventProp(event, start, end, selected)
 
   let { height, top, width, xOffset } = style
   const inner = [
     <div key="1" className="rbc-event-label">
-      {[
-        icon && (
-          <i className="material-icons" key={icon}>
-            {icon}
-          </i>
-        ),
-        event.label || label,
-      ]}
+      {label}
     </div>,
     <div key="2" className="rbc-event-content">
       {Event ? <Event event={event} title={title} /> : title}

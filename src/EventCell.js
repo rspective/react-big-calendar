@@ -47,7 +47,6 @@ class EventCell extends React.Component {
     let end = accessors.end(event)
     let start = accessors.start(event)
     let allDay = accessors.allDay(event)
-    let icon = event.icon
 
     let showAsAllDay =
       isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
@@ -64,15 +63,7 @@ class EventCell extends React.Component {
             localizer={localizer}
           />
         ) : (
-          [
-            icon && (
-              <i className="material-icons" key={icon}>
-                {icon}
-              </i>
-            ),
-            event.label || title,
-            'THIS_IS+CUSTON',
-          ]
+          title
         )}
       </div>
     )

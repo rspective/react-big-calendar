@@ -95,7 +95,6 @@ class Agenda extends React.Component {
       let title = accessors.title(event)
       let end = accessors.end(event)
       let start = accessors.start(event)
-      let icon = event.icon
 
       const userProps = getters.eventProp(
         event,
@@ -129,18 +128,7 @@ class Agenda extends React.Component {
             {this.timeRangeLabel(day, event)}
           </td>
           <td className="rbc-agenda-event-cell">
-            {Event ? (
-              <Event event={event} title={title} />
-            ) : (
-              [
-                icon && (
-                  <i className="material-icons" key={icon}>
-                    {icon}
-                  </i>
-                ),
-                event.label || title,
-              ]
-            )}
+            {Event ? <Event event={event} title={title} /> : title}
           </td>
         </tr>
       )
