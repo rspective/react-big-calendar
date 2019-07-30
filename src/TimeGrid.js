@@ -82,7 +82,43 @@ export default class TimeGrid extends Component {
 
     this.applyScroll()
 
+    this.positionTimeIndicator()
+    this.triggerTimeIndicatorUpdate()
+
     window.addEventListener('resize', this.handleResize)
+  }
+
+  positionTimeIndicator() {
+    const { rtl, min, max, getNow } = this.props
+    const current = getNow()
+
+    const secondsGrid = dates.diff(max, min, 'seconds')
+    const secondsPassed = dates.diff(current, min, 'seconds')
+
+    const timeIndicator = this.refs.timeIndicator
+    const factor = secondsPassed / secondsGrid
+    const timeGutter = this.gutter
+
+    if (timeGutter && current >= min && current <= max) {
+      const pixelHeight = timeGutter.offsetHeight
+      const offset = Math.floor(factor * pixelHeight)
+
+      timeIndicator.style.display = 'block'
+      timeIndicator.style[rtl ? 'left' : 'right'] = 0
+      timeIndicator.style[rtl ? 'right' : 'left'] =
+        timeGutter.offsetWidth + 'px'
+      timeIndicator.style.top = offset + 'px'
+    } else {
+      timeIndicator.style.display = 'none'
+    }
+  }
+
+  triggerTimeIndicatorUpdate() {
+    // Update the position of the time indicator every minute
+    this._timeIndicatorTimeout = window.setTimeout(() => {
+      this.positionTimeIndicator()
+      this.triggerTimeIndicatorUpdate()
+    }, 60000)
   }
 
   handleScroll = e => {
@@ -97,7 +133,7 @@ export default class TimeGrid extends Component {
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize)
-
+    window.clearTimeout(this._timeIndicatorTimeout)
     raf.cancel(this.rafHandle)
   }
 
@@ -269,6 +305,7 @@ export default class TimeGrid extends Component {
             className="rbc-time-gutter"
           />
           {this.renderEvents(range, rangeEvents, getNow())}
+          <div ref="timeIndicator" className="rbc-current-time-indicator" />
         </div>
       </div>
     )

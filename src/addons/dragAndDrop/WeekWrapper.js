@@ -162,8 +162,11 @@ class WeekWrapper extends React.Component {
   }
 
   _selectable = () => {
-    let node = findDOMNode(this).closest('.rbc-month-row, .rbc-allday-cell')
-    let container = node.closest('.rbc-month-view, .rbc-time-view')
+    let node = findDOMNode(this)
+    if (!node) return
+    let closestNode = node.closest('.rbc-month-row, .rbc-allday-cell')
+    if (!closestNode) return
+    let container = closestNode.closest('.rbc-month-view, .rbc-time-view')
 
     let selector = (this._selector = new Selection(() => container))
 
@@ -174,12 +177,12 @@ class WeekWrapper extends React.Component {
       return (
         action === 'move' ||
         (action === 'resize' &&
-          (!isAllDay || pointInBox(getBoundsForNode(node), point)))
+          (!isAllDay || pointInBox(getBoundsForNode(closestNode), point)))
       )
     })
 
     selector.on('selecting', box => {
-      const bounds = getBoundsForNode(node)
+      const bounds = getBoundsForNode(closestNode)
       const { dragAndDropAction } = this.context.draggable
 
       if (dragAndDropAction.action === 'move') this.handleMove(box, bounds)
@@ -188,7 +191,7 @@ class WeekWrapper extends React.Component {
 
     selector.on('selectStart', () => this.context.draggable.onStart())
     selector.on('select', point => {
-      const bounds = getBoundsForNode(node)
+      const bounds = getBoundsForNode(closestNode)
 
       if (!this.state.segment || !pointInBox(bounds, point)) return
       this.handleInteractionEnd()

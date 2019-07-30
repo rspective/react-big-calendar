@@ -39,7 +39,7 @@ export default class TimeGutter extends Component {
     if (idx !== 0) return null
     const { localizer, getNow } = this.props
 
-    const isNow = this.slotMetrics.dateIsInGroup(getNow(), idx)
+    const isNow = getNow().getHours() === value.getHours()
     return (
       <span className={cn('rbc-label', isNow && 'rbc-now')}>
         {localizer.format(value, 'timeGutterFormat')}

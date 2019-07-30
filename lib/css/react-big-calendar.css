@@ -561,7 +561,7 @@ button.rbc-input::-moz-focus-inner {
   -ms-flex: 1 0 0px;
   flex: 1 0 0;
 }
-.rbc-time-slot.rbc-now {
+.rbc-time-slot .rbc-now {
   font-weight: bold;
 }
 .rbc-day-header {
@@ -696,4 +696,19 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+.rbc-current-time-indicator::before {
+  display: block;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  content: ' ';
+  background-color: #74ad31;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+}
+.rbc-rtl .rbc-current-time-indicator::before {
+  left: 0;
+  right: -3px;
 }
