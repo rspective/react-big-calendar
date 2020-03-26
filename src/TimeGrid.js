@@ -65,8 +65,6 @@ export default class TimeGrid extends Component {
     this.state = { gutterWidth: undefined, isOverflowing: null }
 
     this.scrollRef = React.createRef()
-
-    this.resources = Resources(props.resources, props.accessors)
   }
 
   componentWillMount() {
@@ -177,12 +175,12 @@ export default class TimeGrid extends Component {
     })
   }
 
-  renderEvents(range, events, now) {
+  renderEvents(range, events, now, resources) {
     let { min, max, components, accessors, localizer } = this.props
 
-    const groupedEvents = this.resources.groupEvents(events)
+    const groupedEvents = resources.groupEvents(events)
 
-    return this.resources.map(([id, resource], i) =>
+    return resources.map(([id, resource], i) =>
       range.map((date, jj) => {
         let daysEvents = (groupedEvents.get(id) || []).filter(event =>
           dates.inRange(
@@ -229,6 +227,8 @@ export default class TimeGrid extends Component {
       longPressThreshold,
     } = this.props
 
+    let _resources = Resources(resources, accessors)
+
     width = width || this.state.gutterWidth
 
     let start = range[0],
@@ -273,7 +273,7 @@ export default class TimeGrid extends Component {
           getNow={getNow}
           localizer={localizer}
           selected={selected}
-          resources={this.resources}
+          resources={_resources}
           selectable={this.props.selectable}
           accessors={accessors}
           getters={getters}
@@ -304,7 +304,7 @@ export default class TimeGrid extends Component {
             components={components}
             className="rbc-time-gutter"
           />
-          {this.renderEvents(range, rangeEvents, getNow())}
+          {this.renderEvents(range, rangeEvents, getNow(), _resources)}
           <div ref="timeIndicator" className="rbc-current-time-indicator" />
         </div>
       </div>
