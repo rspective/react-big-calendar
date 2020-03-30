@@ -654,6 +654,12 @@ button.rbc-input::-moz-focus-inner {
   border-left-width: 0;
   border-right: 1px solid #ddd;
 }
+.rbc-time-header-content > .rbc-row.rbc-row-resource {
+  border-bottom: 1px solid #ddd;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
 .rbc-time-content {
   display: -webkit-flex;
   display: -ms-flexbox;
