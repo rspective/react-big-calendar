@@ -24,7 +24,7 @@ export function getEventTimes(start, end, dropDate, type) {
     } = window.updateDropPositionBasedOnDragPoint
     if ((dragPointDistanceFromTop, draggedElementHeight)) {
       let diff = parseInt(
-        dragPointDistanceFromTop * duration / draggedElementHeight,
+        (dragPointDistanceFromTop * duration) / draggedElementHeight,
         10
       )
       // Round to given step duration (15 minutes by default)
@@ -55,7 +55,7 @@ class DraggableBackgroundWrapper extends React.Component {
   //   this.state = { isOver: false };
   // }
   //
-  // componentWillMount() {
+  // UNSAFE_componentWillMount() {
   //   let monitor = this.context.dragDropManager.getMonitor()
   //
   //   this.monitor = monitor
