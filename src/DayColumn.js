@@ -95,7 +95,7 @@ class DayColumn extends React.Component {
 
     let selectDates = { start: startDate, end: endDate }
 
-    const { className, style } = dayProp(max)
+    const { className, style } = dayProp(max, resource)
 
     return (
       <div
