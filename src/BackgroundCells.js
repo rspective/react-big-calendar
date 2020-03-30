@@ -12,7 +12,7 @@ class BackgroundCells extends React.Component {
   static propTypes = {
     date: PropTypes.instanceOf(Date),
     getNow: PropTypes.func.isRequired,
-    resource: PropTypes.any,
+    resourceId: PropTypes.any,
 
     getters: PropTypes.object.isRequired,
     components: PropTypes.object.isRequired,
@@ -61,7 +61,7 @@ class BackgroundCells extends React.Component {
       getters,
       date: currentDate,
       components: { dateCellWrapper: Wrapper },
-      resource,
+      resourceId,
     } = this.props
     let { selecting, startIdx, endIdx } = this.state
     let current = getNow()
@@ -70,7 +70,7 @@ class BackgroundCells extends React.Component {
       <div className="rbc-row-bg">
         {range.map((date, index) => {
           let selected = selecting && index >= startIdx && index <= endIdx
-          const { className, style } = getters.dayProp(date, resource)
+          const { className, style } = getters.dayProp(date, resourceId)
 
           return (
             <Wrapper key={index} value={date} range={range}>
