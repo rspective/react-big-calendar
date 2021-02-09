@@ -267,6 +267,7 @@ class DayColumn extends React.Component {
           endDate,
           action: actionType,
           box,
+          allDay: false,
         })
       }
       this.setState({ selecting: false })
