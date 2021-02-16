@@ -319,6 +319,7 @@ class DayColumn extends React.Component {
       action,
       bounds,
       box,
+      allDay: false,
     })
   }
 
