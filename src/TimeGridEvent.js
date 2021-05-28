@@ -73,6 +73,9 @@ class TimeGridEvent extends React.Component {
             height: `${height}%`,
             [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
             width: `${width}%`,
+            maxWidth: userProps.style.left
+              ? `calc(100% - ${userProps.style.left})`
+              : '100%',
           })}
           title={
             tooltip
